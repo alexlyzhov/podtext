@@ -1,1 +1,1 @@
-g++ Main.cpp -o Main.exe -lcurl
+g++ Main.cpp -o Main.exe -lcurl -g
