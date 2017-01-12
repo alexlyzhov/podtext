@@ -7,10 +7,13 @@ using namespace std;
 
 class Source
 {
-    string url;
+    string audioUrl;
+    string textUrl;
 public:
-    Source(string url);
-    string getUrl();
+    Source(string audioUrl, string textUrl);
+    virtual ~Source();
+    string getAudioUrl();
+    string getTextUrl();
 };
 
 #endif // SOURCE_H

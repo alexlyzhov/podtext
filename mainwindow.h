@@ -4,8 +4,6 @@
 #include <QMainWindow>
 #include <QObject>
 #include <QWidget>
-#include <QPushButton>
-#include <QVBoxLayout>
 #include <QApplication>
 #include <QLabel>
 #include <string>
@@ -13,17 +11,20 @@
 #include <fstream>
 #include <QDebug> //remove all this stuff
 #include "downloader.h"
+#include "listwidget.h"
+#include "playerwidget.h"
 
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
 public:
+    Downloader *downloader;
     explicit MainWindow(QWidget *parent = 0);
+    virtual ~MainWindow();
+    void enablePlayer();
 
 signals:
 
-public slots:
-    void mySlot();
 };
 
 #endif // MAINWINDOW_H

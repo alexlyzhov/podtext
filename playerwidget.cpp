@@ -1,26 +1,18 @@
-#include <iostream>
-#include <string>
-#include <curl/curl.h>
-#include <cstring>
-#include <chrono>
-#include <thread>
-#include <fstream>
-#include <QtGui>
-#include <QApplication>
-#include <QWidget>
+#include "playerwidget.h"
 #include "mainwindow.h"
-// windows: urlmon.dll, URLDownloadToFile? Or libcurl which could have been easier
 
-using namespace std;
+PlayerWidget::PlayerWidget(MainWindow *parent) // : QWidget(parent) ?
+{
+    this->mainWindow = parent;
 
-int main(int argc, char **argv) {
-    QApplication app(argc, argv);
+    QVBoxLayout *layout = new QVBoxLayout;
+    QLabel* label = new QLabel("Downloading...");
+    label->setAlignment(Qt::AlignCenter);
+    layout->addWidget(label);
 
-    MainWindow window;
-//    window.show();
-
-    return app.exec();
+    setLayout(layout);
 }
+
 
 //#include <QtMultimedia>
 //#include <QtMultimediaWidgets>

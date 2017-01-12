@@ -2,11 +2,20 @@
 
 using namespace std;
 
-Source::Source(string url)
-{
-    this->url = url;
+Source::~Source() {
+
 }
 
-string Source::getUrl() {
-    return url;
+Source::Source(string audioUrl, string textUrl)
+{
+    this->audioUrl = audioUrl;
+    this->textUrl = textUrl;
+}
+
+string Source::getAudioUrl() {
+    return audioUrl;
+}
+
+string Source::getTextUrl() {
+    return textUrl;
 }
