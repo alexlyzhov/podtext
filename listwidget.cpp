@@ -4,7 +4,6 @@
 ListWidget::ListWidget(MainWindow *parent)
 {
     this->mainWindow = parent;
-    qDebug() << "right constructor";
 
     QPushButton *button = new QPushButton("&Download");
     QObject::connect(button, SIGNAL(clicked()), this, SLOT(buttonClicked()));

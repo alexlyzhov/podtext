@@ -8,6 +8,8 @@ class Data
 public:
     QByteArray audio;
     QByteArray text;
+    double percentDownloaded = 0;
+    double percentPlayed = 0;
 
     Data();
 };

@@ -17,11 +17,11 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
 
 
 void MainWindow::enablePlayer() {
-    qDebug() << "enablePlayer()";
-
-    Source source("http://www.slow-chinese.com/podcasts/Slow_Chinese_150.mp3",
-                  "http://www.slow-chinese.com/podcast/150-e-gao-de-chi-du/");
-    downloader = new Downloader(source);
+    Repo repo;
+    repo.getLangs();
+    vector<Source> chSources = repo.getSources("ch");
+    Source mySource = chSources[0];
+    downloader = new Downloader(mySource);
     Data *data = downloader->download();
 
     PlayerWidget *playerWidget = new PlayerWidget(this);

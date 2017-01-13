@@ -7,12 +7,14 @@
 #include <QApplication>
 #include <QLabel>
 #include <string>
-#include <iostream>
-#include <fstream>
+//#include <iostream>
+//#include <fstream>
 #include <QDebug> //remove all this stuff
 #include "downloader.h"
 #include "listwidget.h"
 #include "playerwidget.h"
+#include "repo.h"
+#include <vector>
 
 class MainWindow : public QMainWindow
 {

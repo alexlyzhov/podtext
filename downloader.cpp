@@ -71,5 +71,8 @@ void Downloader::downloadProgress(qint64 received, qint64 total) {
 void Downloader::getAudioChunk() {
     QByteArray data = audioReply->readAll();
     this->data->audio.append(data);
-//    qDebug() << "data chunk was read: " << data.size();
+    qlonglong totalSize = audioReply->header(QNetworkRequest::ContentLengthHeader).toLongLong();
+    double size = this->data->audio.size();
+    this->data->percentDownloaded = size / totalSize;
+    qDebug() << this->data->percentDownloaded;
 }

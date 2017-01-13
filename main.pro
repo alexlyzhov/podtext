@@ -6,7 +6,9 @@ SOURCES += \
     main.cpp \
     listwidget.cpp \
     playerwidget.cpp \
-    data.cpp
+    data.cpp \
+    repo.cpp \
+    settings.cpp
 TARGET = Main
 QMAKE_CXXFLAGS += -lcurl -g -std=c++11
 LIBS += -lcurl
@@ -18,4 +20,6 @@ HEADERS += \
     source.h \
     listwidget.h \
     playerwidget.h \
-    data.h
+    data.h \
+    repo.h \
+    settings.h
