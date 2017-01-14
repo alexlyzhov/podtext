@@ -18,7 +18,11 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
 
 void MainWindow::enablePlayer() {
     Repo repo;
-    repo.getLangs();
+    vector<string> langs = repo.getLangs();
+    foreach(string str, langs) {
+        qDebug() << str.c_str();
+    }
+
     vector<Source> chSources = repo.getSources("ch");
     Source mySource = chSources[0];
     downloader = new Downloader(mySource);

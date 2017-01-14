@@ -4,13 +4,20 @@
 #include <string>
 #include <vector>
 #include "source.h"
+#include <QFile>
+#include <QByteArray>
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QJsonArray>
+#include <QStringList>
+#include <QDebug>
 
 using namespace std;
 
 class Repo
 {
 private:
-    vector<string> langs;
+    QJsonDocument jsonDoc;
 public:
     Repo();
     virtual ~Repo();

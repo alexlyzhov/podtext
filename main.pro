@@ -23,3 +23,6 @@ HEADERS += \
     data.h \
     repo.h \
     settings.h
+
+DISTFILES += \
+    repo.json
