@@ -1,9 +1,10 @@
 #include "playerwidget.h"
 #include "mainwindow.h"
 
-PlayerWidget::PlayerWidget(MainWindow *parent) // : QWidget(parent) ?
+PlayerWidget::PlayerWidget(MainWindow *parent, Data* data) // : QWidget(parent) ?
 {
     this->mainWindow = parent;
+    this->data = data;
 
     QVBoxLayout *layout = new QVBoxLayout;
     QLabel* label = new QLabel("Downloading...");

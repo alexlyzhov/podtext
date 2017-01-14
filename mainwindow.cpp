@@ -24,6 +24,6 @@ void MainWindow::enablePlayer() {
     downloader = new Downloader(mySource);
     Data *data = downloader->download();
 
-    PlayerWidget *playerWidget = new PlayerWidget(this);
+    PlayerWidget *playerWidget = new PlayerWidget(this, data);
     setCentralWidget(playerWidget);
 }

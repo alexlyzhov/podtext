@@ -10,7 +10,6 @@ using namespace std;
 class Repo
 {
 private:
-//    vector<string> *langs;
     vector<string> langs;
 public:
     Repo();
