@@ -23,7 +23,7 @@ void MainWindow::enablePlayer() {
         qDebug() << str.c_str();
     }
 
-    vector<Source> chSources = repo.getSources("ch");
+    vector<Source> chSources = repo.getSources("ja");
     Source mySource = chSources[0];
     downloader = new Downloader(mySource);
     Data *data = downloader->download();

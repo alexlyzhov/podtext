@@ -16,6 +16,12 @@ Data *Downloader::download() {
 
     manager = new QNetworkAccessManager();
     connect(manager, SIGNAL(finished(QNetworkReply *)), this, SLOT(replyFinished(QNetworkReply *)));
+
+    QNetworkRequest textRequest(QUrl(source.getTextUrl().c_str()));
+    textRequest.setRawHeader("User-Agent" , "Mozilla Firefox"); //needed for the server to accept the request otherwise error ensues
+    textReply = manager->get(textRequest);
+    connect(textReply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(onError(QNetworkReply::NetworkError)));
+
     QNetworkRequest audioRequest(QUrl(source.getAudioUrl().c_str()));
     audioRequest.setRawHeader("User-Agent" , "Mozilla Firefox"); //needed for the server to accept the request otherwise error ensues
     audioReply = manager->get(audioRequest);
@@ -28,11 +34,6 @@ Data *Downloader::download() {
     connect(audioReply, SIGNAL(readyRead()), this, SLOT(getAudioChunk()));
 //    connect(reply, SIGNAL(downloadProgress(qint64, qint64)), this, SLOT(downloadProgress(qint64, qint64)));
 //    connect(reply, SIGNAL(finished()), SLOT(specReplyFinished()));
-    connect(audioReply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(onError(QNetworkReply::NetworkError)));
-
-    QNetworkRequest textRequest(QUrl(source.getTextUrl().c_str()));
-    textRequest.setRawHeader("User-Agent" , "Mozilla Firefox"); //needed for the server to accept the request otherwise error ensues
-    textReply = manager->get(textRequest);
     connect(audioReply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(onError(QNetworkReply::NetworkError)));
 
     return data;
