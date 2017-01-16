@@ -47,10 +47,12 @@ vector<Source *> Repo::getSources(string lang) {
         Source *source;
         if (obj["type"] == "remote") {
             source = new RemoteSource(obj["name"].toString().toStdString(),
+                          lang,
                           obj["audio"].toString().toStdString(),
                           obj["text"].toString().toStdString());
         } else {
             source = new LocalSource(obj["name"].toString().toStdString(),
+                          lang,
                           obj["audio"].toString().toStdString(),
                           obj["text"].toString().toStdString());
         }

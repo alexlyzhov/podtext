@@ -14,6 +14,9 @@ Downloader::~Downloader() {
 RemoteData *Downloader::getData() {
     data = new RemoteData();
 
+    data->name = remoteSource->getName();
+    data->language = remoteSource->getLanguage();
+
     manager = new QNetworkAccessManager();
 //    connect(manager, SIGNAL(finished(QNetworkReply *)), this, SLOT(replyFinished(QNetworkReply *)));
 

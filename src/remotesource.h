@@ -9,7 +9,7 @@ class RemoteSource : public Source
     string audioUrl;
     string textUrl;
 public:
-    RemoteSource(string name, string audioUrl, string textUrl);
+    RemoteSource(string name, string lang, string audioUrl, string textUrl);
     string getAudioUrl();
     string getTextUrl();
 };

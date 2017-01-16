@@ -7,7 +7,7 @@
 class LocalSource : public Source
 {
 public:
-    LocalSource(string name, string audioAddress, string textAddress);
+    LocalSource(string name, string lang, string audioAddress, string textAddress);
 };
 
 #endif // LOCALSOURCE_H

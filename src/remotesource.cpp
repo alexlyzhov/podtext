@@ -1,6 +1,6 @@
 #include "remotesource.h"
 
-RemoteSource::RemoteSource(string name, string audioUrl, string textUrl) : Source(name)
+RemoteSource::RemoteSource(string name, string lang, string audioUrl, string textUrl) : Source(name, lang)
 {
     this->audioUrl = audioUrl;
     this->textUrl = textUrl;

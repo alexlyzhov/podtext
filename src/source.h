@@ -8,10 +8,12 @@ using namespace std;
 class Source
 {
     string name;
+    string language;
 public:
-    Source(string name);
+    Source(string name, string language);
     virtual ~Source();
     string getName();
+    string getLanguage();
 };
 
 #endif // SOURCE_H
