@@ -8,32 +8,32 @@
 #include <QNetworkRequest>
 #include <QObject>
 #include <QByteArray>
-#include "data.h"
+#include "remotesource.h"
+#include "remotedata.h"
+#include "datacreator.h"
 
-class Downloader : QObject
+class Downloader : QObject, public DataCreator
 {
     Q_OBJECT
 
-    Source source;
-public:
+    RemoteSource *remoteSource;
     QNetworkAccessManager *manager = nullptr;
     QNetworkReply *audioReply = nullptr;
     QNetworkReply *textReply = nullptr;
-    Data *data = nullptr;
+    RemoteData *data = nullptr;
+public:
 
-    Downloader(Source source);
+    Downloader(RemoteSource *remoteSource);
     virtual ~Downloader();
-//    static size_t WriteAudio(void *contents, size_t size, size_t nmemb, void *userp);
-    Data *download();
+    RemoteData *getData();
 
 public slots:
-    void replyFinished(QNetworkReply *);
-    void getAudioChunk();
+    void readTextChunk();
+    void readAudioChunk();
+    void textFinished();
+    void audioFinished();
     void onError(QNetworkReply::NetworkError code);
-    void downloadProgress(qint64 received, qint64 total);
-
-//signals:
-//    void downloaded();
+//    void downloadProgress(qint64 received, qint64 total);
 };
 
 #endif // DOWNLOADER_H

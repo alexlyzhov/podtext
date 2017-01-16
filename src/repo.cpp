@@ -28,8 +28,8 @@ vector<string> Repo::getLangs() {
     return langs;
 }
 
-vector<Source> Repo::getSources(string lang) {
-    vector<Source> sources;
+vector<Source *> Repo::getSources(string lang) {
+    vector<Source *> sources;
 
 //    QStringList::const_iterator constIterator;
 //    for (constIterator = langs.constBegin(); constIterator != langs.constEnd(); ++constIterator) {
@@ -44,14 +44,20 @@ vector<Source> Repo::getSources(string lang) {
         qDebug() << obj["name"].toString();
         qDebug() << obj["audio"].toString();
         qDebug() << obj["text"].toString();
-        Source source(obj["name"].toString().toStdString(),
-                      obj["audio"].toString().toStdString(),
-                      obj["text"].toString().toStdString());
+        Source *source;
+        if (obj["type"] == "remote") {
+            source = new RemoteSource(obj["name"].toString().toStdString(),
+                          obj["audio"].toString().toStdString(),
+                          obj["text"].toString().toStdString());
+        } else {
+            source = new LocalSource(obj["name"].toString().toStdString(),
+                          obj["audio"].toString().toStdString(),
+                          obj["text"].toString().toStdString());
+        }
         sources.push_back(source);
     }
 
-//    Source source("http://www.slow-chinese.com/podcasts/Slow_Chinese_150.mp3",
-//                  "http://www.slow-chinese.com/podcast/150-e-gao-de-chi-du/");
-//    sources.push_back(source);
     return sources;
 }
+
+

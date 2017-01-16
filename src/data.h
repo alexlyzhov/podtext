@@ -5,13 +5,13 @@
 
 class Data
 {
+    double percentPlayed = 0;
 public:
     QByteArray audio;
     QByteArray text;
-    double percentDownloaded = 0;
-    double percentPlayed = 0;
 
     Data();
+    double getPercentPlayed();
 };
 
 #endif // DATA_H

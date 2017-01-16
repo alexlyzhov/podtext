@@ -8,14 +8,10 @@ using namespace std;
 class Source
 {
     string name;
-    string audioUrl;
-    string textUrl;
 public:
-    Source(string name, string audioUrl, string textUrl);
+    Source(string name);
     virtual ~Source();
     string getName();
-    string getAudioUrl();
-    string getTextUrl();
 };
 
 #endif // SOURCE_H

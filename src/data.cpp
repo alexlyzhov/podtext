@@ -2,6 +2,9 @@
 
 Data::Data()
 {
-//    audio = new QByteArray();
-//    text = new QByteArray();
+
+}
+
+double Data::getPercentPlayed() {
+    return percentPlayed;
 }

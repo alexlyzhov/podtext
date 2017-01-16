@@ -7,20 +7,20 @@
 #include <QApplication>
 #include <QLabel>
 #include <string>
-//#include <iostream>
-//#include <fstream>
 #include <QDebug> //remove all this stuff
+#include <vector>
 #include "downloader.h"
 #include "listwidget.h"
 #include "playerwidget.h"
 #include "repo.h"
-#include <vector>
+#include "source.h"
+#include "remotesource.h"
+#include "reader.h"
 
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
 public:
-    Downloader *downloader;
     explicit MainWindow(QWidget *parent = 0);
     virtual ~MainWindow();
     void enablePlayer();

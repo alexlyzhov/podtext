@@ -2,62 +2,49 @@
 
 using namespace std;
 
-Downloader::Downloader(Source source) : source(source)
+Downloader::Downloader(RemoteSource *source_param) : DataCreator(source_param)
 {
-    this->source = source;
+    remoteSource = static_cast<RemoteSource *>(source);
 }
 
 Downloader::~Downloader() {
 
 }
 
-Data *Downloader::download() {
-    data = new Data();
+RemoteData *Downloader::getData() {
+    data = new RemoteData();
 
     manager = new QNetworkAccessManager();
-    connect(manager, SIGNAL(finished(QNetworkReply *)), this, SLOT(replyFinished(QNetworkReply *)));
+//    connect(manager, SIGNAL(finished(QNetworkReply *)), this, SLOT(replyFinished(QNetworkReply *)));
 
-    QNetworkRequest textRequest(QUrl(source.getTextUrl().c_str()));
+    QNetworkRequest textRequest(QUrl(remoteSource->getTextUrl().c_str()));
     textRequest.setRawHeader("User-Agent" , "Mozilla Firefox"); //needed for the server to accept the request otherwise error ensues
     textReply = manager->get(textRequest);
     connect(textReply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(onError(QNetworkReply::NetworkError)));
+    connect(textReply, SIGNAL(readyRead()), this, SLOT(readTextChunk()));
+    connect(textReply, SIGNAL(finished()), SLOT(textFinished()));
 
-    QNetworkRequest audioRequest(QUrl(source.getAudioUrl().c_str()));
+    QNetworkRequest audioRequest(QUrl(remoteSource->getAudioUrl().c_str()));
     audioRequest.setRawHeader("User-Agent" , "Mozilla Firefox"); //needed for the server to accept the request otherwise error ensues
     audioReply = manager->get(audioRequest);
-//    QNetworkReply *reply = manager->get(QNetworkRequest(QUrl("http://qt-project.org")));
-//    qDebug() << "got reply in download()";
-//    qDebug() << "isRunning: " << reply->isRunning();
-//    qDebug() << "isFinished: " << reply->isFinished();
-//    qDebug() << "isError: " << reply->error();
-//    qDebug() << "errorString: " << reply->errorString();
-    connect(audioReply, SIGNAL(readyRead()), this, SLOT(getAudioChunk()));
-//    connect(reply, SIGNAL(downloadProgress(qint64, qint64)), this, SLOT(downloadProgress(qint64, qint64)));
-//    connect(reply, SIGNAL(finished()), SLOT(specReplyFinished()));
     connect(audioReply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(onError(QNetworkReply::NetworkError)));
+    connect(audioReply, SIGNAL(readyRead()), this, SLOT(readAudioChunk()));
+//    connect(audioReply, SIGNAL(downloadProgress(qint64, qint64)), this, SLOT(downloadProgress(qint64, qint64))); //too slow
+    connect(audioReply, SIGNAL(finished()), SLOT(audioFinished()));
 
     return data;
 }
 
-void Downloader::replyFinished(QNetworkReply *reply) {
-//    qDebug() << "reply finished";
-//    qDebug() << "isRunning: " << reply->isRunning();
-//    qDebug() << "isFinished: " << reply->isFinished();
-//    qDebug() << "isError: " << reply->error();
-//    qDebug() << "errorString: " << reply->errorString();
-
-//    QByteArray data = reply->readAll();
-//    qDebug() << "data was read:";
-//    qDebug() << data.size();
-
-    if (reply == textReply) {
-        this->data->text = reply->readAll();
-    }
-
-    qDebug() << "all the data of one request was read";
-    qDebug() << "audio size in memory: " << this->data->audio.size();
+void Downloader::textFinished() {
+    qDebug() << "all text was read";
     qDebug() << "text size in memory: " << this->data->text.size();
-    reply->deleteLater();
+    textReply->deleteLater();
+}
+
+void Downloader::audioFinished() {
+    qDebug() << "all audio was read";
+    qDebug() << "audio size in memory: " << this->data->audio.size();
+    audioReply->deleteLater();
 }
 
 void Downloader::onError(QNetworkReply::NetworkError code)
@@ -65,15 +52,24 @@ void Downloader::onError(QNetworkReply::NetworkError code)
     qDebug() << "Request failed with code " << code;
 }
 
-void Downloader::downloadProgress(qint64 received, qint64 total) {
-    qDebug() << "received " << received << " total " << total;
+//void Downloader::downloadProgress(qint64 received, qint64 total) {
+//    qDebug() << "received " << received << " total " << total;
+//}
+
+void Downloader::readTextChunk() {
+    QByteArray data = textReply->readAll();
+    this->data->text.append(data);
+    qlonglong totalSize = textReply->header(QNetworkRequest::ContentLengthHeader).toLongLong();
+    double size = this->data->text.size();
+    this->data->textDownloadedPercent = size / totalSize;
+    qDebug() << "text percent" << this->data->textDownloadedPercent;
 }
 
-void Downloader::getAudioChunk() {
+void Downloader::readAudioChunk() {
     QByteArray data = audioReply->readAll();
     this->data->audio.append(data);
     qlonglong totalSize = audioReply->header(QNetworkRequest::ContentLengthHeader).toLongLong();
     double size = this->data->audio.size();
-    this->data->percentDownloaded = size / totalSize;
-    qDebug() << this->data->percentDownloaded;
+    this->data->audioDownloadedPercent = size / totalSize;
+    qDebug() << "audio percent" << this->data->audioDownloadedPercent;
 }

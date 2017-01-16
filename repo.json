@@ -1,6 +1,7 @@
 {
 	"ch": [
 		{
+            "type": "remote",
 			"name": "Slow Chinese",
 			"audio": "http://www.slow-chinese.com/podcasts/Slow_Chinese_150.mp3",
 			"text": "http://www.slow-chinese.com/podcast/150-e-gao-de-chi-du/"
@@ -8,6 +9,7 @@
     ],
     "en": [
         {
+            "type": "remote",
             "name": "The English We Speak",
             "audio": "http://downloads.bbc.co.uk/learningenglish/features/tews/160202_tews_hot_potato_download.mp3",
             "text": "http://www.bbc.co.uk/learningenglish/english/features/the-english-we-speak/ep-160202"
@@ -16,6 +18,7 @@
     ],
     "ja": [
         {
+            "type": "remote",
             "name": "グッド・バイ (太宰治)",
             "audio": "http://ia800805.us.archive.org/6/items/good-bye_um_librivox/goodbye_01_dazai_64kb.mp3",
             "text": "http://www.aozora.gr.jp/cards/000035/files/258_20179.html"

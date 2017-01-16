@@ -3,7 +3,6 @@
 
 #include <string>
 #include <vector>
-#include "source.h"
 #include <QFile>
 #include <QByteArray>
 #include <QJsonDocument>
@@ -11,6 +10,9 @@
 #include <QJsonArray>
 #include <QStringList>
 #include <QDebug>
+#include "source.h"
+#include "remotesource.h"
+#include "localsource.h"
 
 using namespace std;
 
@@ -22,7 +24,7 @@ public:
     Repo();
     virtual ~Repo();
     vector<string> getLangs();
-    vector<Source> getSources(string lang);
+    vector<Source *> getSources(string lang);
 };
 
 #endif // REPO_H
