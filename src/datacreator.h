@@ -13,6 +13,8 @@ class DataCreator
     // ConcreteProduct: RemoteData, LocalData
 protected:
     Source *source;
+    string name;
+    string language;
 public:
     DataCreator(Source *source);
     virtual Data *getData() = 0;

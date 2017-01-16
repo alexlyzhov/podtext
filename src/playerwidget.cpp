@@ -3,6 +3,8 @@
 
 PlayerWidget::PlayerWidget(MainWindow *parent, Data* data) // : QWidget(parent) ?
 {
+    // Adapter
+    // Constructor in PlayerWidget adapted
     this->mainWindow = parent;
     this->data = data;
 
