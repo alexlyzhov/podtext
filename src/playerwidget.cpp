@@ -1,7 +1,7 @@
 #include "playerwidget.h"
 #include "mainwindow.h"
 
-PlayerWidget::PlayerWidget(MainWindow *parent, Data* data) // : QWidget(parent) ?
+PlayerWidget::PlayerWidget(MainWindow *parent, Data *data) // : QWidget(parent) ?
 {
     // Adapter
     // Constructor in PlayerWidget adapted

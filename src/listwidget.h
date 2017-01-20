@@ -5,6 +5,8 @@
 #include <QPushButton>
 #include <QVBoxLayout>
 #include <QDebug>
+#include "repo.h"
+#include "settings.h"
 
 class MainWindow;
 
@@ -12,8 +14,11 @@ class ListWidget : public QWidget
 {
     Q_OBJECT
 public:
+    Repo *repo;
+    Settings *settings;
+
     MainWindow *mainWindow;
-    ListWidget(MainWindow *parent);
+    ListWidget(MainWindow *parent, Repo *repo, Settings *settings);
 
 signals:
 

@@ -6,9 +6,20 @@ MainWindow::~MainWindow() {
 
 }
 
-MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), settings("settings.json")
+MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
 {
-    ListWidget *listWidget = new ListWidget(this);
+    string settingsFilename = "settings.json";
+    settings = new Settings(settingsFilename);
+
+    vector<string> settingKeys = settings->getSettings();
+    foreach(string str, settingKeys) {
+        qDebug() << "setting: " << str.c_str();
+    }
+
+    string repofile = settings->getSetting("repo filename");
+    repo = new Repo(repofile);
+
+    ListWidget *listWidget = new ListWidget(this, repo, settings);
     setCentralWidget(listWidget);
 
 //    resize(320, 240);
@@ -16,22 +27,12 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), settings("setting
 }
 
 
-void MainWindow::enablePlayer() {
-    vector<string> settingKeys = settings.getSettings();
-    foreach(string str, settingKeys) {
-        qDebug() << "setting: " << str.c_str();
-    }
+void MainWindow::enablePlayer(Data *data) {
+    PlayerWidget *playerWidget = new PlayerWidget(this, data);
+    setCentralWidget(playerWidget);
+}
 
-    string repofile = settings.getSetting("repo filename");
-    Repo repo(repofile);
-
-    vector<string> langs = repo.getLangs();
-    foreach(string str, langs) {
-        qDebug() << str.c_str();
-    }
-
-    vector<Source *> sources = repo.getSources("ja");
-    Source *source = sources[0];
+Data *MainWindow::getData(Source *source) {
     Data *data = nullptr;
     if (source == dynamic_cast<RemoteSource *>(source)) {
         RemoteSource *remoteSource = dynamic_cast<RemoteSource *>(source);
@@ -42,9 +43,5 @@ void MainWindow::enablePlayer() {
         Reader *reader = new Reader(localSource);
         data = reader->getData();
     }
-//    RemoteSource *mySource = static_cast<RemoteSource *>(source);
-
-
-    PlayerWidget *playerWidget = new PlayerWidget(this, data);
-    setCentralWidget(playerWidget);
+    return data;
 }

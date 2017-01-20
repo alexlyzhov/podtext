@@ -22,11 +22,13 @@ class MainWindow : public QMainWindow
 {
     Q_OBJECT
 public:
-    Settings settings;
+    Settings *settings = nullptr;
+    Repo *repo = nullptr;
 
     explicit MainWindow(QWidget *parent = 0);
     virtual ~MainWindow();
-    void enablePlayer();
+    void enablePlayer(Data *data);
+    Data *getData(Source *source);
 
 signals:
 
