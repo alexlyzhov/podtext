@@ -10,6 +10,7 @@
 #include <QJsonArray>
 #include <QStringList>
 #include <QDebug>
+#include <QString>
 #include "source.h"
 #include "remotesource.h"
 #include "localsource.h"
@@ -21,7 +22,7 @@ class Repo
 private:
     QJsonDocument jsonDoc;
 public:
-    Repo();
+    Repo(string filename);
     virtual ~Repo();
     vector<string> getLangs();
     vector<Source *> getSources(string lang);

@@ -6,7 +6,7 @@ MainWindow::~MainWindow() {
 
 }
 
-MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
+MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), settings("settings.json")
 {
     ListWidget *listWidget = new ListWidget(this);
     setCentralWidget(listWidget);
@@ -17,7 +17,14 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
 
 
 void MainWindow::enablePlayer() {
-    Repo repo;
+    vector<string> settingKeys = settings.getSettings();
+    foreach(string str, settingKeys) {
+        qDebug() << "setting: " << str.c_str();
+    }
+
+    string repofile = settings.getSetting("repo filename");
+    Repo repo(repofile);
+
     vector<string> langs = repo.getLangs();
     foreach(string str, langs) {
         qDebug() << str.c_str();

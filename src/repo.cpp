@@ -2,8 +2,8 @@
 
 using namespace std;
 
-Repo::Repo() {
-    QFile jsonFile("repo.json"); // should be able to change this in settings
+Repo::Repo(string filename) {
+    QFile jsonFile(QString::fromStdString(filename)); // should be able to change this in settings
     if (!jsonFile.exists()) {
         qDebug() << "json repo file does not exist";
     }

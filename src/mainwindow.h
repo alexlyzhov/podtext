@@ -16,11 +16,14 @@
 #include "source.h"
 #include "remotesource.h"
 #include "reader.h"
+#include "settings.h"
 
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
 public:
+    Settings settings;
+
     explicit MainWindow(QWidget *parent = 0);
     virtual ~MainWindow();
     void enablePlayer();
