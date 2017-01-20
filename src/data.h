@@ -2,19 +2,23 @@
 #define DATA_H
 
 #include <QByteArray>
+#include <QString>
 #include <string>
+#include "parser.h"
 
 class Data
 {
-    double percentPlayed = 0;
+    bool textReady;
 public:
     std::string language;
     std::string name;
     QByteArray audio;
-    QByteArray text;
+    QString text;
 
     Data();
-    double getPercentPlayed();
+    void parseText();
+    bool isTextReady();
+
 };
 
 #endif // DATA_H

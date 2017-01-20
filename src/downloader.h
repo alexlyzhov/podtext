@@ -12,10 +12,13 @@
 #include "remotedata.h"
 #include "datacreator.h"
 
+class MainWindow;
+
 class Downloader : QObject, public DataCreator
 {
     Q_OBJECT
 
+    MainWindow *mainWindow;
     RemoteSource *remoteSource;
     QNetworkAccessManager *manager = nullptr;
     QNetworkReply *audioReply = nullptr;
@@ -23,7 +26,7 @@ class Downloader : QObject, public DataCreator
     RemoteData *data = nullptr;
 public:
 
-    Downloader(RemoteSource *remoteSource);
+    Downloader(MainWindow *mainWindow, RemoteSource *remoteSource);
     virtual ~Downloader();
     RemoteData *getData();
 

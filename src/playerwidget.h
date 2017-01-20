@@ -2,6 +2,7 @@
 #define PLAYERWIDGET_H
 
 #include <QWidget>
+#include <QDebug>
 #include "data.h"
 
 class MainWindow;
@@ -14,6 +15,7 @@ public:
     Data *data;
 
     explicit PlayerWidget(MainWindow *parent, Data *data);
+    void updateStatus();
 
 signals:
 

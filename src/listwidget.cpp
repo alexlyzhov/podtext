@@ -21,7 +21,7 @@ void ListWidget::buttonClicked() {
         qDebug() << str.c_str();
     }
 
-    vector<Source *> sources = repo->getSources("ja");
+    vector<Source *> sources = repo->getSources("ch");
     Source *source = sources[0];
 
     Data *data = mainWindow->getData(source);

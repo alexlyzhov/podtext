@@ -1,9 +1,11 @@
 #include "downloader.h"
+#include "mainwindow.h"
 
 using namespace std;
 
-Downloader::Downloader(RemoteSource *source_param) : DataCreator(source_param)
+Downloader::Downloader(MainWindow *mainWindow, RemoteSource *source_param) : DataCreator(source_param)
 {
+    this->mainWindow = mainWindow;
     remoteSource = static_cast<RemoteSource *>(source);
 }
 
@@ -42,12 +44,16 @@ void Downloader::textFinished() {
     qDebug() << "all text was read";
     qDebug() << "text size in memory: " << this->data->text.size();
     textReply->deleteLater();
+
+    this->data->parseText();
+    mainWindow->updateStatus();
 }
 
 void Downloader::audioFinished() {
     qDebug() << "all audio was read";
     qDebug() << "audio size in memory: " << this->data->audio.size();
     audioReply->deleteLater();
+    mainWindow->updateStatus();
 }
 
 void Downloader::onError(QNetworkReply::NetworkError code)
@@ -61,11 +67,12 @@ void Downloader::onError(QNetworkReply::NetworkError code)
 
 void Downloader::readTextChunk() {
     QByteArray data = textReply->readAll();
-    this->data->text.append(data);
+    this->data->text.append(data.data());
     qlonglong totalSize = textReply->header(QNetworkRequest::ContentLengthHeader).toLongLong();
     double size = this->data->text.size();
     this->data->textDownloadedPercent = size / totalSize;
     qDebug() << "text percent" << this->data->textDownloadedPercent;
+    mainWindow->updateStatus();
 }
 
 void Downloader::readAudioChunk() {
@@ -75,4 +82,5 @@ void Downloader::readAudioChunk() {
     double size = this->data->audio.size();
     this->data->audioDownloadedPercent = size / totalSize;
     qDebug() << "audio percent" << this->data->audioDownloadedPercent;
+    mainWindow->updateStatus();
 }

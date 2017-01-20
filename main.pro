@@ -14,7 +14,8 @@ SOURCES += \
     src/remotedata.cpp \
     src/localdata.cpp \
     src/datacreator.cpp \
-    src/reader.cpp
+    src/reader.cpp \
+    src/parser.cpp
 TARGET = Main
 QMAKE_CXXFLAGS += -g -std=c++11
 QT += multimedia multimediawidgets network
@@ -33,7 +34,9 @@ HEADERS += \
     src/remotedata.h \
     src/localdata.h \
     src/datacreator.h \
-    src/reader.h
+    src/reader.h \
+    src/parser.h
 
 DISTFILES += \
-    repo.json
+    repo.json \
+    settings.json

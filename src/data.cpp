@@ -2,9 +2,15 @@
 
 Data::Data()
 {
-
+    textReady = false;
 }
 
-double Data::getPercentPlayed() {
-    return percentPlayed;
+void Data::parseText() {
+    Parser parser(text);
+    text = parser.parse();
+    textReady = true;
+}
+
+bool Data::isTextReady() {
+    return textReady;
 }

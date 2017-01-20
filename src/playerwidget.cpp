@@ -16,6 +16,11 @@ PlayerWidget::PlayerWidget(MainWindow *parent, Data *data) // : QWidget(parent) 
     setLayout(layout);
 }
 
+void PlayerWidget::updateStatus() {
+//    qDebug() << "PlayerWidget::updateStatus()";
+    // check data.isTextReady() and show the text if it is ready
+}
+
 // create player.cpp and write code using a player library.
 // some snippet for qtmultimedia which may not work:
 

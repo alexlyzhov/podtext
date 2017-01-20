@@ -24,11 +24,14 @@ class MainWindow : public QMainWindow
 public:
     Settings *settings = nullptr;
     Repo *repo = nullptr;
+    ListWidget *listWidget = nullptr;
+    PlayerWidget *playerWidget = nullptr;
 
     explicit MainWindow(QWidget *parent = 0);
     virtual ~MainWindow();
     void enablePlayer(Data *data);
     Data *getData(Source *source);
+    void updateStatus();\
 
 signals:
 
