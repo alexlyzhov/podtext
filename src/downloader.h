@@ -32,7 +32,6 @@ public:
     RemoteData *getData();
     void downloadText();
     void downloadAudio();
-    ~Downloader();
 
 public slots:
     void readTextChunk();
