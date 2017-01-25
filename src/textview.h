@@ -20,6 +20,7 @@ public:
     TextView(Data *data);
     string getTranslationText();
     void focusOutEvent(QFocusEvent *ev);
+    ~TextView();
 
 public slots:
     void translateText();

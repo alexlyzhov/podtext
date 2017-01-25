@@ -11,6 +11,7 @@ class Reader : public DataCreator
 public:
     Reader(LocalSource *localSource);
     LocalData *getData();
+    ~Reader();
 };
 
 #endif // READER_H
