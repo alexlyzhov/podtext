@@ -9,6 +9,9 @@
 #include "settings.h"
 #include <QColumnView>
 #include "data.h"
+#include <QStandardItem>
+#include <QStandardItemModel>
+#include <QLineEdit>
 
 class MainWindow;
 

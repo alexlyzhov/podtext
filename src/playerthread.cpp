@@ -28,10 +28,10 @@ void PlayerThread::run() {
 //        qDebug() << "before the loop: " << mpg123_strerror(mh);
     do {
         err = mpg123_decode_frame(mh, &frame_offset, &audio, &done);
-        qDebug() << "loop iteration after decoding a frame";
+//        qDebug() << "loop iteration after decoding a frame";
         switch(err) {
         case MPG123_NEW_FORMAT:
-            qDebug() << "MPG123_NEW_FORMAT ";
+//            qDebug() << "MPG123_NEW_FORMAT ";
             mpg123_getformat(mh, &rate, &channels, &encoding);
             format.bits = mpg123_encsize(encoding) * 8;
             format.rate = rate;
@@ -41,7 +41,7 @@ void PlayerThread::run() {
             dev = ao_open_live(ao_default_driver_id(), &format, NULL);
             break; //remote this break to play the first frame?
         case MPG123_OK:
-            qDebug() << "MPG123_OK " << done;
+//            qDebug() << "MPG123_OK " << done;
             ao_play(dev, (char *) audio, done);
             break;
         case MPG123_NEED_MORE:

@@ -24,7 +24,7 @@ QString Parser::parse(string sourceName) {
                 }
                 actualText.erase(pos, tag.length());
                 if ((!firstPar) && (tag == "<p>")) {
-                    qDebug() << "insert";
+//                    qDebug() << "insert";
                     actualText.insert(pos, "\n");
                 }
                 if (firstPar) {
@@ -33,7 +33,7 @@ QString Parser::parse(string sourceName) {
             }
         }
 
-        qDebug() << actualText.c_str();
+//        qDebug() << actualText.c_str();
         text = actualText;
     } else {
         qDebug() << "Cannot parse this type of text data";

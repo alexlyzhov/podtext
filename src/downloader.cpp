@@ -88,7 +88,7 @@ void Downloader::readTextChunk() {
     qlonglong totalSize = textReply->header(QNetworkRequest::ContentLengthHeader).toLongLong();
     double size = this->data->text.size();
     this->data->textDownloadedPercent = size / totalSize;
-    qDebug() << "text percent" << this->data->textDownloadedPercent;
+//    qDebug() << "text percent" << this->data->textDownloadedPercent;
     mainWindow->updateStatus();
 }
 
@@ -104,6 +104,6 @@ void Downloader::readAudioChunk() {
     this->data->pos += data.size();
     this->data->audioDownloadedPercent = this->data->pos / totalSize;
     this->data->totalAudio = totalSize;
-    qDebug() << "audio percent" << this->data->audioDownloadedPercent;
+//    qDebug() << "audio percent" << this->data->audioDownloadedPercent;
     mainWindow->updateStatus();
 }

@@ -83,13 +83,14 @@ void PlayerWidget::play() {
 
 void PlayerWidget::updateStatus() {
     RemoteData *remoteData = dynamic_cast<RemoteData *>(data); //static?
-    qDebug() << "updateStatus in playerWidget";
+//    qDebug() << "updateStatus in playerWidget";
     double playThreshold = 0.2;
     if (remoteData->audioDownloadedPercent > playThreshold && !playing) {
         playing = true;
         PlayerThread *playerThread = new PlayerThread(remoteData);
         connect(playerThread, SIGNAL(finished()), playerThread, SLOT(deleteLater()));
         playerThread->start();
+        qDebug() << "Started playing";
     }
 
 //    if (player->state() == QMediaPlayer::PlayingState) {
