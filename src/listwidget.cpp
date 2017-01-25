@@ -13,7 +13,7 @@ ListWidget::ListWidget(MainWindow *parent, Repo *repo, Settings *settings)
     QLabel *repoLabel = new QLabel(QString("Repository location: "));
     hlayout->addWidget(repoLabel);
     QLineEdit *repoEdit = new QLineEdit();
-    repoEdit->setText(QString("repository.json"));
+    repoEdit->setText(QString::fromStdString(settings->getSetting("repo filename")));
     hlayout->addWidget(repoEdit);
     QPushButton *repoButton = new QPushButton(QString("&Load"));
     hlayout->addWidget(repoButton);
