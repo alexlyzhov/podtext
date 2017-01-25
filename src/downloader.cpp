@@ -107,3 +107,14 @@ void Downloader::readAudioChunk() {
 //    qDebug() << "audio percent" << this->data->audioDownloadedPercent;
     mainWindow->updateStatus();
 }
+
+Downloader::~Downloader()
+{
+	delete(mainWindow);
+	delete(remoteSource);
+	delete(manager);
+	delete(audioReply);
+	delete(textReply);
+	delete(currentReply);
+	delete(data);
+}
