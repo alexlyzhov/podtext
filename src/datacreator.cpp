@@ -6,3 +6,8 @@ DataCreator::DataCreator(Source *source_param) {
     this->name = source->getName();
     this->language = source->getLanguage();
 }
+
+DataCreator::~DataCreator()
+{
+	delete(source);
+}
