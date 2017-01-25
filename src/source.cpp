@@ -17,5 +17,5 @@ string Source::getName() {
 }
 
 string Source::getLanguage() {
-    return name;
+    return language;
 }

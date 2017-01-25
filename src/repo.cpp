@@ -41,9 +41,9 @@ vector<Source *> Repo::getSources(string lang) {
     QJsonArray langArray = langValue.toArray();
     foreach (QJsonValue val, langArray) { // + name!
         QJsonObject obj = val.toObject();
-        qDebug() << obj["name"].toString();
-        qDebug() << obj["audio"].toString();
-        qDebug() << obj["text"].toString();
+//        qDebug() << obj["name"].toString();
+//        qDebug() << obj["audio"].toString();
+//        qDebug() << obj["text"].toString();
         Source *source;
         if (obj["type"] == "remote") {
             source = new RemoteSource(obj["name"].toString().toStdString(),

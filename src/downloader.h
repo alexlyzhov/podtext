@@ -23,12 +23,15 @@ class Downloader : QObject, public DataCreator
     QNetworkAccessManager *manager = nullptr;
     QNetworkReply *audioReply = nullptr;
     QNetworkReply *textReply = nullptr;
+    QNetworkReply *currentReply = nullptr;
     RemoteData *data = nullptr;
 public:
 
     Downloader(MainWindow *mainWindow, RemoteSource *remoteSource);
     virtual ~Downloader();
     RemoteData *getData();
+    void downloadText();
+    void downloadAudio();
 
 public slots:
     void readTextChunk();

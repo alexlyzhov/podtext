@@ -7,24 +7,36 @@ ListWidget::ListWidget(MainWindow *parent, Repo *repo, Settings *settings)
     this->repo = repo;
     this->settings = settings; // write an interface to show and change settings in list widget
 
-    QPushButton *button = new QPushButton("&Download");
+//    QColumnView view = new QColumnView();
+
+
+    QPushButton *button = new QPushButton("&Play");
     QObject::connect(button, SIGNAL(clicked()), this, SLOT(buttonClicked()));
     QVBoxLayout *layout = new QVBoxLayout;
-    layout->addWidget(button);
+    layout->addWidget(button);\
 
     setLayout(layout);
 }
 
 void ListWidget::buttonClicked() {
-    vector<string> langs = repo->getLangs();
-    foreach(string str, langs) {
-        qDebug() << str.c_str();
+    if (!blockButtons) {
+        blockButtons = true;
+//        vector<string> langs = repo->getLangs();
+//        foreach(string str, langs) {
+//            qDebug() << str.c_str();
+//        }
+
+        vector<Source *> sources = repo->getSources("Chinese");
+        Source *source = sources[0];
+
+        curData = mainWindow->getData(source);
     }
+}
 
-    vector<Source *> sources = repo->getSources("ch");
-    Source *source = sources[0];
-
-    Data *data = mainWindow->getData(source);
-
-    mainWindow->enablePlayer(data);
+void ListWidget::updateStatus() {
+    if (curData != nullptr && curData->isTextReady()) {
+        if (mainWindow->widgetNum == 0) {
+            mainWindow->enablePlayer(curData);
+        }
+    }
 }

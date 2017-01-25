@@ -17,11 +17,14 @@
 #include "remotesource.h"
 #include "reader.h"
 #include "settings.h"
+#include <QMessageBox>
 
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
 public:
+    int widgetNum = 0;
+
     Settings *settings = nullptr;
     Repo *repo = nullptr;
     ListWidget *listWidget = nullptr;
@@ -31,7 +34,8 @@ public:
     virtual ~MainWindow();
     void enablePlayer(Data *data);
     Data *getData(Source *source);
-    void updateStatus();\
+    void updateStatus();
+    void onError(string str);
 
 signals:
 

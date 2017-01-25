@@ -8,6 +8,8 @@ class RemoteData : public Data
 public:
     double audioDownloadedPercent = 0;
     double textDownloadedPercent = 0;
+    size_t totalAudio = 0;
+    size_t pos = 0;
     RemoteData();
 //    double getAudioDownloadedPercent();
 //    double getTextDownloadedPercent();

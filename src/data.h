@@ -16,6 +16,7 @@ public:
     QString text;
 
     Data();
+    virtual ~Data();
     void parseText();
     bool isTextReady();
 

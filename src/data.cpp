@@ -1,13 +1,17 @@
 #include "data.h"
 
-Data::Data()
+Data::Data() : textReady(false)
 {
-    textReady = false;
+
+}
+
+Data::~Data() {
+
 }
 
 void Data::parseText() {
     Parser parser(text);
-    text = parser.parse();
+    text = parser.parse(name);
     textReady = true;
 }
 

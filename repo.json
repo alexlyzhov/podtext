@@ -1,5 +1,5 @@
 {
-	"ch": [
+    "Chinese": [
 		{
             "type": "remote",
 			"name": "Slow Chinese",
@@ -7,16 +7,16 @@
 			"text": "http://www.slow-chinese.com/podcast/150-e-gao-de-chi-du/"
 		}
     ],
-    "en": [
+    "English": [
         {
             "type": "remote",
             "name": "The English We Speak",
             "audio": "http://downloads.bbc.co.uk/learningenglish/features/tews/160202_tews_hot_potato_download.mp3",
             "text": "http://www.bbc.co.uk/learningenglish/english/features/the-english-we-speak/ep-160202"
         }
-
+ 
     ],
-    "ja": [
+    "Japanese": [
         {
             "type": "remote",
             "name": "グッド・バイ (太宰治)",

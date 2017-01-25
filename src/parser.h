@@ -12,7 +12,7 @@ class Parser
     string text;
 public:
     Parser(QString text);
-    QString parse();
+    QString parse(string sourceName);
 };
 
 #endif // PARSER_H

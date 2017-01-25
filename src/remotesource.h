@@ -3,6 +3,7 @@
 
 #include <string>
 #include "source.h"
+#include <QDebug>
 
 class RemoteSource : public Source
 {

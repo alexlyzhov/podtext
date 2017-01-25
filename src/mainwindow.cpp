@@ -22,14 +22,24 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
     listWidget = new ListWidget(this, repo, settings);
     setCentralWidget(listWidget);
 
+//    onError("Yerror");
+
 //    resize(320, 240);
 //    setWindowTitle(QApplication::translate("toplevel", "Top-level widget"));
 }
 
 
 void MainWindow::enablePlayer(Data *data) {
-    playerWidget = new PlayerWidget(this, data);
-    setCentralWidget(playerWidget);
+    // it can be called twice due to synchronization issues, therefore nullptr check
+    widgetNum = 1;
+    if (playerWidget == nullptr) {
+        qDebug() << "MainWindow::enablePlayer()";
+        playerWidget = new PlayerWidget(this, data);
+        listWidget->setParent(0);
+        setCentralWidget(playerWidget); // reparent previous widget to avoid losing it
+    } else {
+        qDebug() << "MainWindow::enablePlayer is getting called again";
+    }
 }
 
 Data *MainWindow::getData(Source *source) {
@@ -48,7 +58,18 @@ Data *MainWindow::getData(Source *source) {
 
 void MainWindow::updateStatus() {
 //    qDebug() << "MainWindow::updateStatus()";
+    if (listWidget != nullptr) {
+        listWidget->updateStatus();
+    }
     if (playerWidget != nullptr) {
         playerWidget->updateStatus();
     }
+}
+
+void MainWindow::onError(string str) {
+    QMessageBox messageBox;
+    messageBox.critical(0, "Error", str.c_str());
+    messageBox.setStandardButtons(QMessageBox::Ok);
+    connect(messageBox.button( QMessageBox::Ok ), SIGNAL(clicked()), qApp, SLOT(quit()) );
+    messageBox.exec();
 }

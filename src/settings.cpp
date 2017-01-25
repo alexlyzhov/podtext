@@ -1,10 +1,17 @@
 #include "settings.h"
+#include <QDir>
 
 using namespace std;
 
 Settings::Settings(string filename) {
     // so far it's only reading settings, it should also be able to write them to the settings json file
     QFile jsonFile(QString::fromStdString(filename)); // should be able to change this in settings
+//    QDir dir(".");
+//    QStringList entryList = dir.entryList();
+//    foreach(QString str, entryList) {
+//        qDebug() << str;
+//    }
+
     if (!jsonFile.exists()) {
         qDebug() << "json settings file does not exist";
     }

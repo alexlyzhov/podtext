@@ -15,10 +15,13 @@ SOURCES += \
     src/localdata.cpp \
     src/datacreator.cpp \
     src/reader.cpp \
-    src/parser.cpp
+    src/parser.cpp \
+    src/textview.cpp \
+    src/playerthread.cpp
 TARGET = Main
-QMAKE_CXXFLAGS += -g -std=c++11
-QT += multimedia multimediawidgets network
+LIBS = -lopenal -lmpg123 -lao
+QMAKE_CXXFLAGS += -g -std=c++11 -lopenal
+QT += multimedia multimediawidgets network widgets
 
 HEADERS += \
     src/data.h \
@@ -35,8 +38,17 @@ HEADERS += \
     src/localdata.h \
     src/datacreator.h \
     src/reader.h \
-    src/parser.h
+    src/parser.h \
+    src/textview.h \
+    src/playerthread.h
 
 DISTFILES += \
     repo.json \
     settings.json
+
+#win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../../../../../lib/release/ -lmpg123
+#else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../../../../../lib/debug/ -lmpg123
+#else:unix: LIBS += -L$$PWD/../../../../../lib/ -lmpg123
+
+#INCLUDEPATH += $$PWD/../../../../../usr/include
+#DEPENDPATH += $$PWD/../../../../../usr/include
