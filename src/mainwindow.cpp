@@ -73,3 +73,11 @@ void MainWindow::onError(string str) {
     connect(messageBox.button( QMessageBox::Ok ), SIGNAL(clicked()), qApp, SLOT(quit()) );
     messageBox.exec();
 }
+
+MainWindow::~MainWindow()
+{
+	delete(settings);
+	delete(repo);
+	delete(listWidget);
+	delete(playerWidget);
+}
