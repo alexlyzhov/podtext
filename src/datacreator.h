@@ -18,6 +18,7 @@ protected:
 public:
     DataCreator(Source *source);
     virtual Data *getData() = 0;
+    ~DataCreator();
 };
 
 #endif // DATACREATOR_H
