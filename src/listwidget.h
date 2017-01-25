@@ -29,6 +29,7 @@ public:
     MainWindow *mainWindow;
     ListWidget(MainWindow *parent, Repo *repo, Settings *settings);
     void updateStatus();
+    ~ListWidget();
 
 signals:
 
