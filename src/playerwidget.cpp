@@ -111,3 +111,12 @@ void PlayerWidget::updateStatus() {
 //        qDebug() << "in play" << player->duration();
 //    }
 }
+
+PlayerWidget::~PlayerWidget()
+{
+	delete(player);
+	delete(buffer);
+    delete(mainWindow);
+    delete(data);
+
+}

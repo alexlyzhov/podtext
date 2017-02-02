@@ -26,6 +26,11 @@ void TextView::translateText() {
     }
 }
 
+TextView::~TextView()
+{
+	delete(data);
+}
+
 void TextView::focusOutEvent(QFocusEvent *ev) {
     // override to maintain text selection
 

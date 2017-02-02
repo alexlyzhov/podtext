@@ -36,6 +36,7 @@ public:
     Data *getData(Source *source);
     void updateStatus();
     void onError(string str);
+    ~MainWindow();
 
 signals:
 

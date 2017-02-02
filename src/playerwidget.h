@@ -28,6 +28,7 @@ public:
     explicit PlayerWidget(MainWindow *parent, Data *data);
     void updateStatus();
     void play();
+    ~PlayerWidget();
 
 signals:
 

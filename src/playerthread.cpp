@@ -53,3 +53,8 @@ void PlayerThread::run() {
         }
     } while(done > 0 || err == MPG123_NEW_FORMAT);
 }
+
+PlayerThread::~PlayerThread()
+{
+	delete(remoteData);
+}

@@ -61,3 +61,11 @@ void ListWidget::updateStatus() {
         }
     }
 }
+
+ListWidget::~ListWidget()
+{
+	delete(repo);
+	delete(curData);
+	delete(settings);
+	delete(mainWindow);
+}

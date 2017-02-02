@@ -15,6 +15,7 @@ class PlayerThread : public QThread
     void run();
 public:
     PlayerThread(RemoteData *remoteData);
+    ~PlayerThread();
 };
 
 #endif // PLAYERTHREAD_H

@@ -10,3 +10,8 @@ LocalData *Reader::getData() {
     // return LocalData pointer
     return nullptr;
 }
+
+Reader::~Reader()
+{
+	delete(localSource);
+}
